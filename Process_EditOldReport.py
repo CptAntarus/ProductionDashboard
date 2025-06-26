@@ -1,0 +1,79 @@
+from kivymd.app import MDApp
+from kivy.uix.screenmanager import Screen
+from kivymd.uix.list import ThreeLineListItem
+from Process_GSM import GlobalScreenManager
+from kivymd.uix.menu import MDDropdownMenu
+
+
+class EditOldReport(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.sm = MDApp.get_running_app().root
+
+    def on_enter(self, **kwargs):
+        super().on_enter(**kwargs)
+        self.sm = MDApp.get_running_app().root
+        self.sm.PREVIOUS_SCREEN = 'startScreen'
+        self.populate_report_list()
+
+
+    def populate_report_list(self, *args):
+        report_data = GlobalScreenManager.TEMPLATE_REPORTS
+
+        reportList = self.ids.reportList
+        reportList.clear_widgets()
+
+        for report in report_data:
+            item = ThreeLineListItem(text="Project: " + report["project"],
+                                    secondary_text="Tech: " + report["tech"],
+                                    tertiary_text="Date: " + report["date"],
+                                    on_release=lambda r=report: self.selectReport(r))
+            reportList.add_widget(item)
+
+
+    def open_menu(self, item):
+        sortOps = ["Project", "Tech", "Date"]
+        menu_items = [
+            {
+                "text": i,"on_release": lambda x=i: self.sortOption(x),
+            } for i in sortOps
+        ]
+        MDDropdownMenu(caller=item, items=menu_items).open()
+
+    def selectReport(self, report):
+        # print(f"Loading report: {report}")
+        app = MDApp.get_running_app()
+        sm = app.root
+
+        dataScreen = sm.get_screen('repDataInput')
+        dataScreen.receiveReport(report)
+
+        app.switchScreen('repDataInput', 'editOldReport')
+
+
+
+    def sortOption(self, text_item):
+        # Map displayed names to the keys in your report data
+        key_map = {
+            "Project": "project",
+            "Tech": "tech",   
+            "Date": "date"
+        }
+
+        sort_key = key_map.get(text_item, "project")
+
+        report_data = sorted(GlobalScreenManager.TEMPLATE_REPORTS, key=lambda r: r[sort_key])
+
+        # Refresh the list
+        report_list = self.ids.reportList
+        report_list.clear_widgets()
+        for report in report_data:
+            item = ThreeLineListItem(
+                text="Project: " + report["project"],
+                secondary_text="Tech: " + report["tech"],
+                tertiary_text="Date: " + report["date"],
+                on_release=lambda r=report: self.selectReport(r)
+            )
+            report_list.add_widget(item)
+
+        print(f"Sorted by: {sort_key}")

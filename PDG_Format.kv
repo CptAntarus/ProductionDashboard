@@ -1,37 +1,24 @@
 <StartScreen>:
-    MDBoxLayout:
-        orientation: 'vertical'
-        padding: dp(20)
-        spacing: dp(90)
-        size_hint: 0.6, None
-        height: self.minimum_height
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
-
+    MDFloatLayout:
         MDLabel:
-            text: "Process Dashboard\n(EDIT FONT LATER)"
-            halign: "center"
+            text: "Process Dashboard"
             font_style: "H5"
+            halign: "center"
             size_hint_y: None
             height: self.texture_size[1]
+            pos_hint: {"center_x":.5,"center_y":.7}
 
-        AnchorLayout:
-            anchor_x: 'center'
-            size_hint_y: None
-            height: dp(48)
+        MDRaisedButton:
+            text: "Create New Report"
+            pos_hint: {"center_x":.35,"center_y":.4}
+            on_release: app.root.switchScreen("createNewReport")
 
-            MDBoxLayout:
-                orientation: 'horizontal'
-                spacing: dp(70)
-                size_hint: None, None
-                size: self.minimum_size
+        MDRaisedButton:
+            text: "Edit Previous Report"
+            pos_hint: {"center_x":.65,"center_y":.4}
+            on_release: app.root.switchScreen("editOldReport")
 
-                MDRaisedButton:
-                    text: "Create New Report"
-                    on_release: app.switchScreen("createNewReport", "startScreen")
 
-                MDRaisedButton:
-                    text: "Edit Previous Report"
-                    on_release: app.switchScreen("editOldReport", "startScreen")
 
 
 
@@ -42,7 +29,7 @@
         MDTopAppBar:
             title: "Previous Work Orders"
             right_action_items: [["menu", lambda x: root.open_menu(x)]]
-            left_action_items: [["arrow-left", lambda y: app.backButton(y)]]
+            left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
 
         ScrollView:
             MDList:
@@ -54,7 +41,7 @@
 
         MDTopAppBar:
             title: "PAGE TITLE HERE"
-            left_action_items: [["arrow-left", lambda y: app.backButton(y)]]
+            left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
 
         MDGridLayout:
             cols: 3
@@ -100,7 +87,7 @@
 
         MDTopAppBar:
             title: "Create New Work Order"
-            left_action_items: [["arrow-left", lambda y: app.backButton(y)]]
+            left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
 
         MDFloatLayout:
             MDLabel:

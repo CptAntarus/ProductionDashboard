@@ -1,7 +1,7 @@
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.list import ThreeLineListItem
-from Process_GSM import GlobalScreenManager
+from PDG_GSM import GlobalScreenManager, GSM
 from kivymd.uix.menu import MDDropdownMenu
 
 
@@ -48,7 +48,7 @@ class EditOldReport(Screen):
         dataScreen = sm.get_screen('repDataInput')
         dataScreen.receiveReport(report)
 
-        app.switchScreen('repDataInput', 'editOldReport')
+        GSM().switchScreen('repDataInput')
 
 
 

@@ -4,7 +4,7 @@ from kivymd.app import MDApp
 from kivymd.uix.list import OneLineListItem
 
 # Local Imports
-from Process_GSM import GlobalScreenManager
+from PDG_GSM import GlobalScreenManager
 
 class CreateNewReport(Screen):
     def __init__(self, **kwargs):

@@ -1,0 +1,49 @@
+######################################################################
+#
+#	- Syntax: Name:Tag
+#	- Name: The name you want displayed throughout the app
+#	- Flag: What you will use in this file to denote that process
+# 
+######################################################################
+
+
+######################################################################
+#
+#	- List of the process options
+#
+######################################################################
+[Processes]
+	{Process 1 : p1}
+	{Process 2 : p2}
+	{Process 3 : p3}
+	{Process 4 : p4}
+	{Process 5 : p5}
+	{Process 6 : p6}
+	{Process 7 : p7}
+	{Process 8 : p8}
+
+######################################################################
+#
+#	- List of the process options
+#
+######################################################################
+[Actions]
+	{Action 1 : p1,p2,p3,p4}
+	{Action 2 : p1,p2,p4,p5,p6}
+	{Action 3 : p1,p3,p5,p7}
+	{Action 4 : p2,p4,p6,p8}
+	{Action 5 : p5,p6,p7,p8}
+	{Action 6 : p1,p4,p5,p2}
+	{Action 7 : p7}
+
+######################################################################
+#
+#	- List of the Title options
+# 
+######################################################################
+[Titles]
+	{Title 1 : T1}
+	{Title 2 : T2}
+	{Title 3 : T3}
+	{Title 4 : T4}
+	{Title 5 : T5}

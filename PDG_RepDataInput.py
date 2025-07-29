@@ -1,9 +1,11 @@
 from kivy.uix.screenmanager import Screen
 
-class RepDataInput(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+from PDG_GSM import GlobalScreenManager, GSM
 
-    def receiveReport(self, report):
+class RepDataInput(Screen):
+    def on_enter(self):
         print("Made it to data input screen")
-        print(report)
+        self.ids.RepDataInputTitle.title = GlobalScreenManager.CURRENT_REPORT
+
+    def receiveReport(self):
+        print(GlobalScreenManager.CURRENT_REPORT)

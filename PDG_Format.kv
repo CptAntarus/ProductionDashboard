@@ -40,7 +40,8 @@
         orientation: 'vertical'
 
         MDTopAppBar:
-            title: "PAGE TITLE HERE"
+            id: RepDataInputTitle
+            title: ""
             left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
 
         MDGridLayout:
@@ -82,31 +83,55 @@
 
 
 <CreateNewReport>:
-    MDBoxLayout:
-        orientation: 'vertical'
+    MDTopAppBar:
+        id: CreatenewReportTopBar
+        title: "Create New Report"
+        left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
+        right_action_items: [["home", lambda x: app.root.switchScreen('startScreen')]]
+        pos_hint: {"top": 1}
 
-        MDTopAppBar:
-            title: "Create New Work Order"
-            left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
+    MDFloatLayout:
+        # MDLabel:
+        #     text: "Select A Project:"
+        #     size_hint: .3,.4
+        #     pos_hint: {"center_x":.3,"center_y":.87}
 
-        MDFloatLayout:
-            MDLabel:
-                text: "Select A Project:"
-                size_hint: .3,.4
-                pos_hint: {"center_x":.3,"center_y":.87}
+        MDTextField:
+            id: prosSearchInput
+            mode: "rectangle"
+            hint_text: "Project Name"
+            size_hint: 0.7, 0.1
+            pos_hint: {"center_x": .5, "center_y": .75}
 
-            MDTextField:
-                id: prosSearchInput
-                mode: "rectangle"
-                hint_text: "Project Name"
-                size_hint: 0.7, 0.1
-                pos_hint: {"center_x": .5, "center_y": .8}
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint: .7, .45
+            pos_hint: {"center_x":.5,"center_y":.45}
 
-            MDBoxLayout:
-                orientation: 'vertical'
-                size_hint: .7, .45
-                pos_hint: {"center_x":.5,"center_y":.5}
+            ScrollView:
+                MDList:
+                    id: processList
 
-                ScrollView:
-                    MDList:
-                        id: processList
+<ActionsScreen>:
+    MDTopAppBar:
+        id: ActionsScreenTopBar
+        title: ""
+        left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
+        right_action_items: [["home", lambda x: app.root.switchScreen('startScreen')]]
+        pos_hint: {"top": 1}
+
+    MDFloatLayout:
+        AnchorLayout:
+            anchor_x: "center"
+            # anchor_y: "bottom"
+            size_hint: 1, None
+            height: self.children[0].height + dp(40)
+
+            MDGridLayout:
+                id: actionsGrid
+                cols: 4
+                spacing: dp(30)
+                padding: dp(10)
+                width: self.minimum_width
+                height: self.minimum_height
+                adaptive_size: True

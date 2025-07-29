@@ -6,14 +6,7 @@ from kivymd.uix.menu import MDDropdownMenu
 
 
 class EditOldReport(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.sm = MDApp.get_running_app().root
-
-    def on_enter(self, **kwargs):
-        super().on_enter(**kwargs)
-        self.sm = MDApp.get_running_app().root
-        self.sm.PREVIOUS_SCREEN = 'startScreen'
+    def on_enter(self):
         self.populate_report_list()
 
 
@@ -27,7 +20,7 @@ class EditOldReport(Screen):
             item = ThreeLineListItem(text="Project: " + report["project"],
                                     secondary_text="Tech: " + report["tech"],
                                     tertiary_text="Date: " + report["date"],
-                                    on_release=lambda r=report: self.selectReport(r))
+                                    on_release=lambda widget, r=report: self.selectReport(r))
             reportList.add_widget(item)
 
 
@@ -39,17 +32,6 @@ class EditOldReport(Screen):
             } for i in sortOps
         ]
         MDDropdownMenu(caller=item, items=menu_items).open()
-
-    def selectReport(self, report):
-        # print(f"Loading report: {report}")
-        app = MDApp.get_running_app()
-        sm = app.root
-
-        dataScreen = sm.get_screen('repDataInput')
-        dataScreen.receiveReport(report)
-
-        GSM().switchScreen('repDataInput')
-
 
 
     def sortOption(self, text_item):
@@ -72,8 +54,15 @@ class EditOldReport(Screen):
                 text="Project: " + report["project"],
                 secondary_text="Tech: " + report["tech"],
                 tertiary_text="Date: " + report["date"],
-                on_release=lambda r=report: self.selectReport(r)
+                on_release=lambda widget, r=report: self.selectReport(r)
             )
             report_list.add_widget(item)
 
         print(f"Sorted by: {sort_key}")
+
+
+    def selectReport(self, report):
+        print("Loading report: ", report["project"])
+        GlobalScreenManager.CURRENT_REPORT = report["project"]
+
+        GSM().switchScreen('repDataInput')

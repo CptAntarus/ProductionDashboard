@@ -6,8 +6,10 @@ from kivy.uix.screenmanager import ScreenManager
     Maybe save to Excel sheet and use later.
 """
 
-class GlobalScreenManager(ScreenManager):    
-    REPORT_ID = 7567
+class GlobalScreenManager(ScreenManager):
+    CURRENT_PROCESS = 0
+    CURRENT_TAG = 0
+    CURRENT_REPORT = 0
 
     SCREEN_HIST = []
 
@@ -17,15 +19,10 @@ class GlobalScreenManager(ScreenManager):
         {"project": "Project 1", "tech": "Luke Skywalker", "date": "12/02/2023"},
     ]
 
+    PROCESSES = {}
+    ACTIONS = {}
+    TITLES = {}
 
-    # Product
-    PROCESSES = [
-        "C-130J AMU Tech Refresh 440400-000",
-        "C-130J AMU Legacy 445500-000",
-        "C-130J CMDU",
-        "Apache 5x5",
-        "Apache 6x6"
-    ]
 
     def switchScreen(self, newScreen):
         GlobalScreenManager.SCREEN_HIST.append(self.current)
@@ -34,6 +31,12 @@ class GlobalScreenManager(ScreenManager):
 
     def backButton(self, *args):
         self.current = GlobalScreenManager.SCREEN_HIST.pop()
+
+
+    def reset(self):
+        GlobalScreenManager.CURRENT_PROCESS = 0
+        GlobalScreenManager.CURRENT_TAG = 0
+        GlobalScreenManager.SCREEN_HIST.clear()
 
 
 def GSM():

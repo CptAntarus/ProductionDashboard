@@ -45,29 +45,14 @@
             left_action_items: [["arrow-left", lambda y: app.root.backButton(y)]]
 
         MDGridLayout:
-            cols: 3
-            spacing: dp(20)
-            padding: dp(20)
-            size_hint_y: 1
+            id: EditOldReportGrid
+            cols: 4
+            spacing: dp(30)
+            padding: dp(10)
+            width: self.minimum_width
+            height: self.minimum_height
+            adaptive_size: True
 
-            MDRaisedButton:
-                text: "Option 1"
-                on_release: # Do Something
-            MDRaisedButton:
-                text: "Option 2"
-                on_release: # Do Something
-            MDRaisedButton:
-                text: "Option 3"
-                on_release: # Do Something
-            MDRaisedButton:
-                text: "Option 4"
-                on_release: # Do Something
-            MDRaisedButton:
-                text: "Option 5"
-                on_release: # Do Something
-            MDRaisedButton:
-                text: "Option 6"
-                on_release: # Do Something
 
         AnchorLayout:
             anchor_x: 'left'

@@ -14,9 +14,9 @@ class GlobalScreenManager(ScreenManager):
     SCREEN_HIST = []
 
     TEMPLATE_REPORTS = [
-        {"project": "Project 2", "tech": "Han Solo", "date": "05/04/2025"},
-        {"project": "Project 3", "tech": "Chewbaca", "date": "06/02/2024"},
-        {"project": "Project 1", "tech": "Luke Skywalker", "date": "12/02/2023"},
+        {"project": "C-130J AMU Tech Refresh 440400-000", "tech": "Han Solo", "date": "05/04/2025"},
+        {"project": "C-130J AMU Legacy 445500-000", "tech": "Chewbaca", "date": "06/02/2024"},
+        {"project": "C-130J CMDU", "tech": "Luke Skywalker", "date": "12/02/2023"},
     ]
 
     PROCESSES = {}

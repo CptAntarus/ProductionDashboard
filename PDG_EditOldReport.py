@@ -64,5 +64,6 @@ class EditOldReport(Screen):
     def selectReport(self, report):
         print("Loading report: ", report["project"])
         GlobalScreenManager.CURRENT_REPORT = report["project"]
+        GlobalScreenManager.CURRENT_TAG = GlobalScreenManager.PROCESSES[report["project"]]
 
         GSM().switchScreen('repDataInput')
